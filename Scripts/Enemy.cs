@@ -50,7 +50,7 @@ public class Enemy : MonoBehaviour {
 
         // Recupera a posição de onde está o personagem
         //Vector3 playerDir = target.TransformDirection(0, 0, 1);
-        Vector3 playerDir = target.TransformDirection(transform.forward);
+        Vector3 playerDir = transform.TransformDirection(transform.forward);
 
         // Recupera a direção para onde ir até o personagem
         Vector3 direcao = (target.position - transform.position);
