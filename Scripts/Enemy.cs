@@ -39,7 +39,7 @@ public class Enemy : MonoBehaviour {
                 speed = speed * 1.5f;
                 points_Velocidade = 0;
                 bPP_Velocidade = true;
-                print("Aumento a velociade mano");
+                print("Aumento a velociade");
             }
         }
         else
@@ -50,27 +50,28 @@ public class Enemy : MonoBehaviour {
 
         // Recupera a posição de onde está o personagem
         //Vector3 playerDir = target.TransformDirection(0, 0, 1);
-        Vector3 playerDir = transform.TransformDirection(0, 0, 1);
+        Vector3 playerDir = target.TransformDirection(transform.forward);
 
         // Recupera a direção para onde ir até o personagem
-        Vector3 direcao = (target.position - transform.position).normalized;
-        
+        Vector3 direcao = (target.position - transform.position);
+
         // Recupera o angulo entre a visão do inimigo e o personagem
-        float dotValue = Vector3.Dot(playerDir, direcao);
+        float dotValue = Vector3.Dot(direcao, playerDir);
 
-        // Recupera a distância entre o personagem e o inimigo
-        float distanceBetweenEnemyAndTarget = Vector3.Distance(target.position, transform.position);
-
-        //print("Desejado: " + viewConeAngleCosine + "\tAlcançado: " + dotValue);
+        print("Desejado: " + viewConeAngleCosine + "\tAlcançado: " + dotValue + "\t\t" + (dotValue > viewConeAngleCosine));
 
         // Se o personagem estiver no ângulo de visão do inimigo, o inimigo avança
         if (1==1)//if (dotValue > viewConeAngleCosine) //TODO
         {
-         // Se a diferença entre o inimigo e o personagem for maior do que a distância definida, a velocidade do inimigo é dobrada
-            if (distanceBetweenEnemyAndTarget > distanceToPPSpeed)
-                transform.position += direcao * speed * 2;
-            else
-                transform.position += direcao * speed;
+
+            // Recupera a distância entre o personagem e o inimigo
+            float distanceBetweenEnemyAndTarget = Vector3.Distance(target.position, transform.position);
+
+            // Se a diferença entre o inimigo e o personagem for maior do que a distância definida, a velocidade do inimigo é dobrada
+            //if (distanceBetweenEnemyAndTarget > distanceToPPSpeed)
+            //transform.position += direcao * speed * 2;
+            //else
+            //transform.position += direcao * speed;
         }
     }
 }
