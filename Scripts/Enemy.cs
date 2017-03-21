@@ -8,7 +8,7 @@ public class Enemy : MonoBehaviour {
     public float distance; //Default: 2
     public float distanceToPPSpeed; //Default: 10
     public float viewConeAngleCosine; //Default: 0.8f
-    public float radius; //Default: 3f;
+    public float radius; //Default: 1f;
 
     private int points_Velocidade = 0;
     private bool bPP_Velocidade = false;  //Variável que controla se o incremento da velocidade já foi realizado
@@ -55,8 +55,8 @@ public class Enemy : MonoBehaviour {
 
         // Recupera a posição de onde está o personagem
         float angulo = Mathf.Atan2(target.position.y - transform.position.y, target.position.x - transform.position.x) * Mathf.Rad2Deg;
-        newX = radius * Mathf.Cos(angulo);
-        newY = radius * Mathf.Sin(angulo);
+        newX = radius * Mathf.Cos(angulo * Mathf.Deg2Rad);
+        newY = radius * Mathf.Sin(angulo * Mathf.Deg2Rad);
 
         Vector3 playerDir = transform.TransformDirection(newX, newY, 0).normalized;
 
